@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react'
 import Card from './Card'
 
 const Row = ({title, fetchURL, isLargeRow = false}) => {
-    const [movie, setMovie] = useState()
+    const [movie, setMovie] = useState([])
     useEffect(() => {
         async function fetchData() {
             const request = await axios.get(fetchURL)
@@ -12,8 +12,6 @@ const Row = ({title, fetchURL, isLargeRow = false}) => {
         }
         fetchData()
     }, [fetchURL])
-
-    console.log(movie)
   return (
     <div className="flex flex-col space-y-4 text-white">
       <h1 className="text-xl uppercase font-bold">{title}</h1>
