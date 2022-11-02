@@ -2,6 +2,7 @@ import axios from '../axios';
 import React, { useEffect, useState } from 'react'
 import Navbar from "../components/Navbar";
 import requests from '../requests';
+import Row from '../components/Row';
 
 const HomeScreen = () => {
   const [movies, setMovies] = useState([])
@@ -47,7 +48,33 @@ const HomeScreen = () => {
         </div>
         <div className="absolute h-[40rem] bg-transparent w-full bg-gradient-to-b from-transparent to-black" />
       </div>
-      <div className="h-screen bg-black"></div>
+      <div className="h-full bg-black flex flex-col space-y-5 p-8">
+        <Row 
+          title="Netflix Originals"
+          fetchURL={requests.fetchNetflixOriginal}
+          isLargeRow  
+        />
+        <Row 
+          title="Trending Now"
+          fetchURL={requests.fetchTrending}
+          isLargeRow  
+        />
+        <Row 
+          title="Top Rated"
+          fetchURL={requests.fetchTopRatedMovies}
+          isLargeRow  
+        />
+        <Row 
+          title="Action"
+          fetchURL={requests.fetchActionMovies}
+          isLargeRow  
+        />
+        <Row 
+          title="Comedy"
+          fetchURL={requests.fetchComedyMovies}
+          isLargeRow  
+        />
+      </div>
     </div>
   );
 }
