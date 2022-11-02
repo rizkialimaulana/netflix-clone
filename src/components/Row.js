@@ -1,10 +1,10 @@
 import axios from '../axios'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Card from './Card'
 
 const Row = ({title, fetchURL, isLargeRow = false}) => {
     const [movie, setMovie] = useState()
-    useState(() => {
+    useEffect(() => {
         async function fetchData() {
             const request = await axios.get(fetchURL)
             setMovie(request.data.results)
