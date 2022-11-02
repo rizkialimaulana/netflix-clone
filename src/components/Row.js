@@ -15,7 +15,7 @@ const Row = ({title, fetchURL, isLargeRow = false}) => {
   return (
     <div className="flex flex-col space-y-4 text-white">
       <h1 className="text-xl uppercase font-bold">{title}</h1>
-      <div className="flex flex-row items-center space-x-5 w-full overflow-x-scroll overflow-y-hidden scrollbar-thin scrollbar-thumb-gray-600 scrollbar-track-black">
+      <div className="flex flex-row items-center space-x-5 w-full overflow-x-scroll overflow-y-hidden scrollbar-none md:scrollbar-thin scrollbar-thumb-gray-600 scrollbar-track-black">
         {movie.map((item) => (
           <Card key={item.id} poster_path={item.poster_path} />
         ))}

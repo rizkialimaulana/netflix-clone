@@ -19,9 +19,9 @@ const Navbar = () => {
             <span>Bahasa Indonesia</span>
             <MdArrowDropDown className='text-2xl'/>
         </div>
-        <Link to="/home">
+        <Link to="/login">
           <button className="py-2 px-4 text-lg rounded-sm bg-red-600 text-white">
-            Home
+            Sign In
           </button>
         </Link>
       </div>
