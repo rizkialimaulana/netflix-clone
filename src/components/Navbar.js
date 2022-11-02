@@ -10,7 +10,7 @@ const Navbar = () => {
         <img
           src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/08/Netflix_2015_logo.svg/1280px-Netflix_2015_logo.svg.png"
           alt=""
-          className="relative w-40 h-fit cursor-pointer"
+          className="relative w-20 md:w-40 h-fit cursor-pointer"
         />
       </Link>
       <div className='flex flex-row items-center space-x-5'>
@@ -20,7 +20,7 @@ const Navbar = () => {
             <MdArrowDropDown className='text-2xl'/>
         </div>
         <Link to="/login">
-          <button className="py-2 px-4 text-lg rounded-sm bg-red-600 text-white">
+          <button className="py-2 px-4 text-sm md:text-lg rounded-sm bg-red-600 text-white">
             Sign In
           </button>
         </Link>

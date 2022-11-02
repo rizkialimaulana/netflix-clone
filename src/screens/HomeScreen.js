@@ -35,16 +35,16 @@ const HomeScreen = () => {
           }}
         />
         <div className="pl-10 absolute z-10 flex h-full w-full flex-col justify-center space-y-6 text-white">
-          <h1 className="text-6xl font-bold">{movies.title}</h1>
+          <h1 className="text-3xl md:text-6xl font-bold">{movies.title}</h1>
           <div className="flex items-center space-x-4">
-            <button className="px-4 py-2 text-lg text-red cursor-pointer transition-all hover:bg-red-600 backdrop-blur-md uppercase">
+            <button className="px-4 py-2 text-md md:text-lg text-red cursor-pointer transition-all hover:bg-red-600 backdrop-blur-md uppercase">
               play now
             </button>
-            <button className="px-4 py-2 text-lg backdrop-blur-md cursor-pointer transition-all hover:bg-red-600 uppercase">
+            <button className="px-4 py-2 text-md md:text-lg backdrop-blur-md cursor-pointer transition-all hover:bg-red-600 uppercase">
               My List
             </button>
           </div>
-          <p className="text-md w-[20rem] md:w-[30rem]">{truncate(movies?.overview, 150)}</p>
+          <p className="text-sm w-[20rem] md:w-[30rem]">{truncate(movies?.overview, 150)}</p>
         </div>
         <div className="absolute h-[40rem] bg-transparent w-full bg-gradient-to-b from-transparent to-black" />
       </div>
