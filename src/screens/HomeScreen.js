@@ -44,7 +44,7 @@ const HomeScreen = () => {
               My List
             </button>
           </div>
-          <p className="text-md w-[30rem]">{truncate(movies?.overview, 150)}</p>
+          <p className="text-md w-[20rem] md:w-[30rem]">{truncate(movies?.overview, 150)}</p>
         </div>
         <div className="absolute h-[40rem] bg-transparent w-full bg-gradient-to-b from-transparent to-black" />
       </div>
