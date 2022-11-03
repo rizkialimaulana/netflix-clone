@@ -6,19 +6,20 @@ import { auth } from "../firebase";
 const LoginScreen = () => {
   const emailRef = useRef(null)
   const passRef = useRef(null)
-  const register = (e) => {
-    e.preventDefault();
-    createUserWithEmailAndPassword(
-      auth,
-      emailRef.current.value,
-      passRef.current.value
-    ).then((authUser) => {
-      console.log(authUser)
-    }).catch((error) => {
-      alert(error.message)
-    })
-  }
-  
+   const register = (e) => {
+     e.preventDefault();
+     createUserWithEmailAndPassword(
+       auth,
+       emailRef.current.value,
+       passRef.current.value
+     )
+       .then((authUser) => {
+         console.log(authUser);
+       })
+       .catch((error) => {
+         alert(error.message);
+       });
+   };
   const login = (e) => {
     e.preventDefault();
     signInWithEmailAndPassword(
@@ -54,9 +55,6 @@ const LoginScreen = () => {
               placeholder="Password"
             />
           </div>
-          <button type="submit" onClick={register} className="text-white bg-red-600 px-6 py-3 w-full">
-            Register
-          </button>
           <button type="submit" onClick={login} className="text-white bg-red-600 px-6 py-3 w-full">
             Sign In
           </button>
