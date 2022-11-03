@@ -33,7 +33,7 @@ const LoginScreen = () => {
   }
   return (
     <div>
-      <div className="z-30 text-white backdrop-blur-sm w-[90%] px-4 md:px-0 md:w-[40rem] h-[30rem] flex flex-col items-center justify-evenly bg-black/70">
+      <div className="z-30 text-white backdrop-blur-sm w-[25rem] px-4 md:px-0 md:w-[40rem] h-[30rem] flex flex-col items-center justify-evenly bg-black/70">
         <h1 className="font-bold text-3xl">Sign In</h1>
         <form className="flex flex-col items-center space-y-5 text-sm md:text-lg">
           <div className="flex items-center space-x-6">
