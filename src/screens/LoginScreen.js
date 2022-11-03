@@ -1,78 +1,82 @@
-import React, { useState } from 'react'
-import { Link } from 'react-router-dom'
-import bg from '../assets/img/bg.png';
-import { FaGoogle, FaKey } from 'react-icons/fa'
-import { BsMailbox } from 'react-icons/bs'
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
+import React, { useRef} from "react";
+import { FaGoogle, FaKey, FaUser } from "react-icons/fa";
+import { auth } from "../firebase";
 
-function LoginScreen() {
-    // const [email, setEmail] = useState("")
-    // const [password, setPassword] = useState("")
+const LoginScreen = () => {
+  const emailRef = useRef(null)
+  const passRef = useRef(null)
+  const register = (e) => {
+    e.preventDefault();
+    createUserWithEmailAndPassword(
+      auth,
+      emailRef.current.value,
+      passRef.current.value
+    ).then((authUser) => {
+      console.log(authUser)
+    }).catch((error) => {
+      alert(error.message)
+    })
+  }
+  
+  const login = (e) => {
+    e.preventDefault();
+    signInWithEmailAndPassword(
+      auth,
+      emailRef.current.value,
+      passRef.current.value
+    ).then((authUser) => {
+      console.log(authUser)
+    }).catch((error) => {
+      alert(error.message)
+    })
+  }
   return (
     <div>
-      <div className="top-0 z-20 absolute w-full flex flex-row items-center justify-between py-7 px-12 md:px-14">
-        <Link to="/">
-          <img
-            src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/08/Netflix_2015_logo.svg/1280px-Netflix_2015_logo.svg.png"
-            alt=""
-            className="relative w-40 h-fit cursor-pointer"
-          />
-        </Link>
-        <Link to="/login">
-          <button className="py-2 px-4 text-lg rounded-sm bg-red-600 text-white">
+      <div className="z-30 text-white backdrop-blur-sm w-[90%] px-4 md:px-0 md:w-[40rem] h-[30rem] flex flex-col items-center justify-evenly bg-black/70">
+        <h1 className="font-bold text-3xl">Sign In</h1>
+        <form className="flex flex-col items-center space-y-5 text-sm md:text-lg">
+          <div className="flex items-center space-x-6">
+            <FaUser className="text-white text-xl" />
+            <input
+              ref={emailRef}
+              className="outline-none p-4 border-b border-red-600 bg-transparent"
+              type="email"
+              placeholder="Email"
+            />
+          </div>
+          <div className="flex items-center space-x-6">
+            <FaKey className="text-white text-xl" />
+            <input
+              ref={passRef}
+              className="outline-none p-4 border-b border-red-600 bg-transparent"
+              type="password"
+              placeholder="Password"
+            />
+          </div>
+          <button type="submit" onClick={register} className="text-white bg-red-600 px-6 py-3 w-full">
+            Register
+          </button>
+          <button type="submit" onClick={login} className="text-white bg-red-600 px-6 py-3 w-full">
             Sign In
           </button>
-        </Link>
-      </div>
-      <div
-        className="h-screen relative flex items-center justify-center"
-        style={{
-          backgroundImage: `url("${bg}")`,
-          backgroundSize: "cover",
-          backgroundPosition: "center center",
-        }}
-      >
-        <div className="z-30 text-white backdrop-blur-sm w-[70%] md:w-[40rem] h-[30rem] flex flex-col items-center justify-evenly bg-black/70">
-          <h1 className='font-bold text-3xl'>Sign In</h1>
-          <form className="flex flex-col items-center space-y-5 text-lg">
-            <div className="flex items-center space-x-6">
-              <BsMailbox className="text-red-600 text-xl" />
-              <input
-                className="outline-none p-4 border-b border-red-600 bg-transparent"
-                type="email"
-                placeholder="Email"
-                onChange={(e) => e.target.value}
-              />
-            </div>
-            <div className="flex items-center space-x-6">
-              <FaKey className="text-red-600 text-xl" />
-              <input
-                className="outline-none p-4 border-b border-red-600 bg-transparent"
-                type="password"
-                placeholder="Password"
-                onChange={(e) => e.target.value}
-              />
-            </div>
-            <div className="flex items-center space-x-2">
-              <button className="text-red-600 border border-red-600 px-6 py-3">
-                Cancel
-              </button>
-              <button className="text-white bg-red-600 px-6 py-3">
-                Sign In
-              </button>
-            </div>
-          </form>
-          <div className="flex flex-col items-center space-y-3">
-            <p className="text-lg">Login with :</p>
-            <FaGoogle className="text-white text-xl" />
-          </div>
-          <p className='text-white'>
-            Dont have an account? <Link to='/register' className='cursor-pointer transition-color duration-[250ms] hover:text-red-600'>Register</Link>
-          </p>
+        </form>
+        <div className="flex flex-col items-center space-y-3">
+          <p className="text-lg">Login with :</p>
+          <FaGoogle className="text-white text-xl cursor-pointer" />
         </div>
-        <div className="absolute h-screen bg-gradient-to-b from-black via-transparent to-black z-10 w-full" />
+        <p className="text-white">
+          Dont have an account?{" "}
+          <span
+            onClick={register}
+            className="cursor-pointer transition-color duration-[250ms] hover:text-red-600"
+          >
+            Register
+          </span>
+        </p>
       </div>
     </div>
   );
 }
 
-export default LoginScreen
+export default LoginScreen;

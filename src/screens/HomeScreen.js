@@ -34,8 +34,8 @@ const HomeScreen = () => {
             backgroundPosition: "center center",
           }}
         />
-        <div className="pl-10 absolute z-10 flex h-full w-full flex-col justify-center space-y-6 text-white">
-          <h1 className="text-3xl md:text-6xl font-bold">{movies.title}</h1>
+        <div className="px-10 absolute z-10 flex h-full w-full flex-col justify-center space-y-6 text-white">
+          <h1 className="text-3xl md:text-6xl font-bold">{movies.title || movies.name}</h1>
           <div className="flex items-center space-x-4">
             <button className="px-4 py-2 text-md md:text-lg text-red cursor-pointer transition-all hover:bg-red-600 backdrop-blur-md uppercase">
               play now
