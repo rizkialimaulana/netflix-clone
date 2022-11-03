@@ -12,10 +12,10 @@ const ProfileScreen = () => {
         <Navbar />
         <div className='h-screen bg-black text-white flex items-center justify-center'>
             <div className='flex flex-col space-y-4 px-4'>
-                <h1 className='text-4xl md:text-left text-center'>Edit Profile</h1>
-                <div className='flex flex-col md:flex-row md:space-y-0 space-y-4 items-center space-x-4'>
-                    <img src={avatar} alt="" className='w-20 h-20 ' />
-                    <div className='flex flex-col [w-27rem] md:w-[30rem] space-y-4'>
+                <h1 className='hidden md:inline-flex text-4xl md:text-left text-center'>Edit Profile</h1>
+                <div className='flex flex-col md:flex-row md:space-y-0 space-y-4 md:items-start items-center md:space-x-4'>
+                    <img src={avatar} alt="" className='w-20 h-20 cursor-pointer' />
+                    <div className='flex flex-col w-[25rem] md:w-[30rem] space-y-4'>
                         <h1 className='text-sm md:text-md bg-gray-500 py-2 pl-2'>{user.email}</h1>
                         <h1 className='text-lg md:text-xl'>Plans (Current Plan : premium)</h1>
                         <span className='text-sm md:text-md text-gray-300'>Renewal date : 04/11/2022</span>

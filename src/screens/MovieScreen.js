@@ -39,11 +39,12 @@ const MovieScreen = () => {
                 <span className='text-sm md:text-lg font-bold'>{vote}/10 ({count})</span>
               </div>
               <p className='text-xs md:text-md'>{overview}</p>
+              <div className='flex items-center space-x-3'>
+                <button className='px-4 py-2 bg-red-600 transition-all duration-[250ms] hover:bg-red-800 text-sm md:text-md'>PLAY NOW</button>
+                <button className='px-4 py-2 bg-red-600 transition-all duration-[250ms] hover:bg-red-800 text-sm md:text-md'>WATCH TRAILER</button>
+              </div>
             </div>
           </div>
-        </div>
-        <div className="h-screen flex items-center justify-center">
-          <h1 className="text-3xl md:text-6xl">STREAMING COMING SOON</h1>
         </div>
       </div>
     </>
