@@ -1,12 +1,12 @@
-import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword, signInWithPopup } from "firebase/auth";
 import React, { useRef} from "react";
 import { FaGoogle, FaKey, FaUser } from "react-icons/fa";
-import { auth } from "../firebase";
+import { auth, google } from "../firebase";
 
 const LoginScreen = () => {
   const emailRef = useRef(null)
   const passRef = useRef(null)
-   const register = (e) => {
+  const register = (e) => {
      e.preventDefault();
      createUserWithEmailAndPassword(
        auth,
@@ -32,9 +32,18 @@ const LoginScreen = () => {
       alert(error.message)
     })
   }
+  const loginGoogle = () => {
+    signInWithPopup(
+      auth, google
+    ).then((googleAccount) => {
+      console.log(googleAccount)
+    }).catch((error) => {
+      alert(error.message)
+    })
+  }
   return (
     <div>
-      <div className="z-30 text-white backdrop-blur-sm w-[25rem] px-4 md:px-0 md:w-[40rem] h-[30rem] flex flex-col items-center justify-evenly bg-black/70">
+      <div className="z-30 text-white backdrop-blur-sm w-[25rem] px-4 md:px-0 md:w-[35rem] h-[30rem] flex flex-col items-center justify-evenly bg-black/70">
         <h1 className="font-bold text-3xl">Sign In</h1>
         <form className="flex flex-col items-center space-y-5 text-sm md:text-lg">
           <div className="flex items-center space-x-6">
@@ -61,7 +70,7 @@ const LoginScreen = () => {
         </form>
         <div className="flex flex-col items-center space-y-3">
           <p className="text-lg">Login with :</p>
-          <FaGoogle className="text-white text-xl cursor-pointer" />
+          <FaGoogle onClick={loginGoogle} className="text-white text-xl cursor-pointer" />
         </div>
         <p className="text-white">
           Dont have an account?{" "}
@@ -71,6 +80,7 @@ const LoginScreen = () => {
           >
             Register
           </span>
+          <span> (Fill email and password above)</span>
         </p>
       </div>
     </div>
