@@ -8,6 +8,7 @@ import { API_KEY } from '../requests';
 
 const MovieScreen = () => {
     const [video, setVideo] = useState([])
+    const [watch, setWatch] = useState([])
     const location = useLocation()
     const title = location.state.title
     const overview = location.state.overview
@@ -50,7 +51,19 @@ const MovieScreen = () => {
           console.log(error)  
         }
       }
+      async function fetchMovie() {
+        try {
+          const getMovie = await axios.get(
+            `https://api.themoviedb.org/3/movie/${movieId}/watch/providers?api_key=${API_KEY}`
+          );
+          setWatch(getMovie.data.results.GB)
+          return getMovie
+        } catch (error) {
+          console.log(error)
+        }
+      }
       fetchVideos()
+      fetchMovie()
     }, [movieId])
   return (
     <>
@@ -85,12 +98,15 @@ const MovieScreen = () => {
                 </div>
                 <p className="text-xs md:text-md">{overview}</p>
                 <div className="flex items-center space-x-3">
-                  <button className="px-4 py-2 bg-red-600 transition-all duration-[250ms] hover:bg-red-800 text-sm md:text-md">
-                    PLAY NOW
-                  </button>
-                  <button className="px-4 py-2 bg-red-600 transition-all duration-[250ms] hover:bg-red-800 text-sm md:text-md">
-                    WATCH TRAILER
-                  </button>
+                  {watch ? (
+                    <a href={watch.link} className="w-full cursor-pointer text-center px-4 py-2 bg-red-600 transition-all duration-[250ms] hover:bg-red-800 text-sm md:text-md">
+                      PLAY NOW
+                    </a>
+                  ) : (
+                    <span className="w-full text-center px-4 py-2 bg-gray-600 transition-all duration-[250ms]">
+                      NOT AVAILABLE
+                    </span>
+                  )}
                 </div>
               </div>
             </div>
