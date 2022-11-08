@@ -20,6 +20,7 @@ const Row = ({title, fetchURL, isLargeRow = false}) => {
         {movie.map((item) => (
           <Card
             key={item.id}
+            movieId={item.id}
             backdrop_path={item.backdrop_path}
             poster_path={item.poster_path}
             title={item.original_title || item.title}

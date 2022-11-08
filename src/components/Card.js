@@ -1,7 +1,7 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
 const Card = ({
-  id,
+  movieId,
   backdrop_path,
   poster_path,
   title,
@@ -23,7 +23,7 @@ const Card = ({
       onClick={() =>
         navigate("/movie", {
           state: {
-            movieId: id,
+            id: movieId,
             background: backdrop_path,
             poster: poster_path,
             title: title,
