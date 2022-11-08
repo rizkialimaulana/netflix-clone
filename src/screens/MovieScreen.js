@@ -34,6 +34,10 @@ const MovieScreen = () => {
       },
     };
 
+    function _onReady(event) {
+      event.target.pauseVideo();
+    }
+
     useEffect(() => {
       async function fetchVideos() {
         try {
@@ -69,9 +73,7 @@ const MovieScreen = () => {
                 className="md:w-[20rem] md:h-[25rem] w-[10rem] h-auto"
               />
               <div className="flex flex-col space-y-3 md:space-y-4">
-                <h1 className="text-xl md:text-3xl font-bold">
-                  {title}
-                </h1>
+                <h1 className="text-xl md:text-3xl font-bold">{title}</h1>
                 <span className="text-md md:text-xl">
                   Release Date : {date}
                 </span>
@@ -92,11 +94,16 @@ const MovieScreen = () => {
                 </div>
               </div>
             </div>
-            <YouTube videoId={video.key} opts={opts} className='hidden md:inline-flex'/>
+            <YouTube
+              videoId={video.key}
+              opts={opts}
+              className="hidden md:inline-flex"
+              onReady={_onReady}
+            />
           </div>
         </div>
-        <div className='h-fit py-10 md:hidden flex items-center justify-center'>
-          <YouTube videoId={video.key} opts={mobile}/>
+        <div className="h-fit py-10 md:hidden flex items-center justify-center">
+          <YouTube videoId={video.key} opts={mobile} onReady={_onReady} />
         </div>
       </div>
     </>
