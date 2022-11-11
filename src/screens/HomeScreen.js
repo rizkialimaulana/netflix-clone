@@ -6,7 +6,6 @@ import Row from '../components/Row';
 
 const HomeScreen = () => {
   const [movies, setMovies] = useState([])
-
   useEffect(() => {
     async function fetchData() {
       const request = await axios.get(requests.fetchNetflixOriginal)
@@ -44,50 +43,40 @@ const HomeScreen = () => {
               My List
             </button>
           </div>
-          <p className="text-sm w-[20rem] md:w-[30rem]">{truncate(movies?.overview, 150)}</p>
+          <p className="text-sm w-[20rem] md:w-[30rem]">
+            {truncate(movies?.overview, 150)}
+          </p>
         </div>
         <div className="absolute h-[40rem] bg-transparent w-full bg-gradient-to-b from-transparent to-black" />
       </div>
       <div className="h-full bg-black flex flex-col space-y-5 p-8">
-        <Row 
+        <Row
           title="Netflix Originals"
           fetchURL={requests.fetchNetflixOriginal}
-          isLargeRow  
+          isLargeRow
         />
-        <Row 
+        <Row
           title="Trending Now"
           fetchURL={requests.fetchTrending}
-          isLargeRow  
+          isLargeRow
         />
-        <Row 
+        <Row
           title="Top Rated"
           fetchURL={requests.fetchTopRatedMovies}
-          isLargeRow  
+          isLargeRow
         />
-        <Row 
-          title="Action"
-          fetchURL={requests.fetchActionMovies}
-          isLargeRow  
-        />
-        <Row 
-          title="Comedy"
-          fetchURL={requests.fetchComedyMovies}
-          isLargeRow  
-        />
-        <Row 
-          title="Horror"
-          fetchURL={requests.fetchHorrorMovies}
-          isLargeRow  
-        />
-        <Row 
+        <Row title="Action" fetchURL={requests.fetchActionMovies} isLargeRow />
+        <Row title="Comedy" fetchURL={requests.fetchComedyMovies} isLargeRow />
+        <Row title="Horror" fetchURL={requests.fetchHorrorMovies} isLargeRow />
+        <Row
           title="Romance"
           fetchURL={requests.fetchRomanceMovies}
-          isLargeRow  
+          isLargeRow
         />
-        <Row 
+        <Row
           title="Documenter"
           fetchURL={requests.fetchDocumentariesMovies}
-          isLargeRow  
+          isLargeRow
         />
       </div>
     </div>

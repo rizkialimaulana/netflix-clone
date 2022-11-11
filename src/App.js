@@ -1,12 +1,13 @@
-import React, { useEffect } from 'react';
-import HomeScreen from './screens/HomeScreen';
-import LandingScreen from './screens/LandingScreen';
+import React, { useEffect, lazy, Suspense } from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
 import { auth } from './firebase';
 import { useDispatch, useSelector } from 'react-redux';
 import { login, logout, selectUser } from './features/userSlice';
-import ProfileScreen from './screens/ProfileScreen';
-import MovieScreen from './screens/MovieScreen';
+
+const HomeScreen = lazy((() => import('./screens/HomeScreen')))
+const LandingScreen = lazy((() => import('./screens/LandingScreen')))
+const MovieScreen = lazy((() => import('./screens/MovieScreen')))
+const ProfileScreen = lazy((() => import('./screens/ProfileScreen')))
 
 function App() {
   const user = useSelector(selectUser)
@@ -14,13 +15,15 @@ function App() {
 
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged((userAuth) => {
-      if(userAuth) {
-        dispatch(login({
-          uid: userAuth.uid,
-          email: userAuth.email
-        }))
+      if (userAuth) {
+        dispatch(
+          login({
+            uid: userAuth.uid,
+            email: userAuth.email,
+          })
+        );
       } else {
-        dispatch(logout())
+        dispatch(logout());
       }
     })
     return unsubscribe
@@ -31,11 +34,13 @@ function App() {
         {!user ? (
           <LandingScreen />
         ) : (
-          <Routes>
-            <Route path='/' element={<HomeScreen />}/>
-            <Route path='/profile' element={<ProfileScreen />}/>
-            <Route path='/movie' element={<MovieScreen />}/>
-          </Routes>
+          <Suspense fallback={"loading..."}>
+            <Routes>
+              <Route path='/' element={<HomeScreen />}/>
+              <Route path='/profile' element={<ProfileScreen />}/>
+              <Route path='/movie' element={<MovieScreen />}/>
+            </Routes>
+          </Suspense>
         )}
       </Router>
     </div>

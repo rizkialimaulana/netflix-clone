@@ -111,7 +111,7 @@ const MovieScreen = () => {
               </div>
             </div>
             <YouTube
-              videoId={video.key}
+              videoId={video?.key}
               opts={opts}
               className="hidden md:inline-flex"
               onReady={_onReady}
@@ -119,7 +119,7 @@ const MovieScreen = () => {
           </div>
         </div>
         <div className="h-fit py-10 md:hidden flex items-center justify-center">
-          <YouTube videoId={video.key} opts={mobile} onReady={_onReady} />
+          <YouTube videoId={video?.key} opts={mobile} onReady={_onReady} />
         </div>
       </div>
     </>
